@@ -25,13 +25,13 @@ public class DoorAnimation : MonoBehaviour
         if (_isOpen == false)
         {
             _anim.SetBool("open", true);
-            _anim.SetBool("close", false);
+           //_anim.SetBool("close", false);
             _audioSource.PlayOneShot(_open, 1.0f);
             _isOpen = true;
         } else
         {
             _anim.SetBool("open", false);
-            _anim.SetBool("close", true);
+            //_anim.SetBool("close", true);
             StartCoroutine(PlayCloseSound());
             _isOpen = false;
         }
