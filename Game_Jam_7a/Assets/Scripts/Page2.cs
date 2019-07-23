@@ -2,42 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Page2 : MonoBehaviour
-{
+public class Page2 : MonoBehaviour {
 
     [SerializeField]
     private AudioClip _pagePickup;
 
 
-
-    private void OnTriggerStay(Collider other)
+    public void PickUp()
     {
-        if (other.tag == "Player")
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        if (player != null)
         {
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                Player player = other.GetComponent<Player>();
-                if (player != null)
-                {
-                    player.pageCount++;
-                    AudioSource.PlayClipAtPoint(_pagePickup, transform.position, 1f);
-                    UIManager uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+            player.pageCount++;
+            AudioSource.PlayClipAtPoint(_pagePickup, transform.position, 1f);
+            UIManager uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 
-                    if (uIManager != null)
-                    {
-                        uIManager.CollectedPage2();
-                    }
-                    Destroy(this.gameObject);
-                }
+            if (uIManager != null)
+            {
+                uIManager.CollectedPage2();
             }
+            Destroy(this.gameObject);
         }
     }
 
 
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

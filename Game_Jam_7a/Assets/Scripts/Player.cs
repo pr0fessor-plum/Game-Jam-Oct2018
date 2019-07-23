@@ -107,6 +107,22 @@ public class Player : MonoBehaviour
                             Debug.Log("Hit Page1" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<Page1>().PickUp();
                             return;
+                        case ("Page2"):
+                            Debug.Log("Hit Page2" + Time.time);
+                            hitInfo.transform.gameObject.GetComponent<Page2>().PickUp();
+                            return;
+                        case ("Page3"):
+                            Debug.Log("Hit Page3" + Time.time);
+                            hitInfo.transform.gameObject.GetComponent<Page3>().PickUp();
+                            return;
+                        case ("Page4"):
+                            Debug.Log("Hit Page4" + Time.time);
+                            hitInfo.transform.gameObject.GetComponent<Page4>().PickUp();
+                            return;
+                        case ("Page5"):
+                            Debug.Log("Hit Page5" + Time.time);
+                            hitInfo.transform.gameObject.GetComponent<Page5>().PickUp();
+                            return;
                     }
                 }
             }
