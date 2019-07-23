@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private ParticleSystem _fireShot;
     [SerializeField]
     private GameObject _wand;
+
+    public int pageCount = 0;
   
 
 	void Start ()
