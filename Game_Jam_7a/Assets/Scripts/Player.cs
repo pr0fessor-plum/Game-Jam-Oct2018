@@ -103,6 +103,10 @@ public class Player : MonoBehaviour
                             Debug.Log("Hit Plant" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<PlantAnimation>().MovePlant();
                             return;
+                        case ("Page1"):
+                            Debug.Log("Hit Page1" + Time.time);
+                            hitInfo.transform.gameObject.GetComponent<Page1>().PickUp();
+                            return;
                     }
                 }
             }
