@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            //SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -122,6 +122,10 @@ public class Player : MonoBehaviour
                         case ("Page5"):
                             Debug.Log("Hit Page5" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<Page5>().PickUp();
+                            return;
+                        case ("Sheet"):
+                            Debug.Log("Hit Sheet" + Time.time);
+                            hitInfo.transform.gameObject.GetComponent<MusicSheetAnimation>().ActivateSheet();
                             return;
                     }
                 }
