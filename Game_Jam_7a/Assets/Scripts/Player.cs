@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private ParticleSystem _fireShot;
     [SerializeField]
     private GameObject _wand;
+    [SerializeField]
+    private GameObject _uncle;
 
     public int pageCount = 0;
   
@@ -30,12 +32,31 @@ public class Player : MonoBehaviour
     {
         Movement();
 
-    
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            _uncle.GetComponent<Uncle>().WakeUp();
+        }
+
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            _uncle.GetComponent<Uncle>().Idle();
+        }
+
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            _uncle.GetComponent<Uncle>().Drink();
+        }
+
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            _uncle.GetComponent<Uncle>().Lean();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
