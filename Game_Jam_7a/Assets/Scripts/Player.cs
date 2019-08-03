@@ -17,20 +17,24 @@ public class Player : MonoBehaviour
     private GameObject _wand;
     [SerializeField]
     private GameObject _uncle;
+    private bool _plateHasMoved = false;
+    private bool _sheetHasMoved = false;
+    private bool _pillowHasMoved = false;
+    private bool _plantHasMoved = false;
 
     public int pageCount = 0;
   
 
 	void Start ()
     {
-        _controller = GetComponent<CharacterController>();
+        //_controller = GetComponent<CharacterController>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	void Update ()
     {
-        Movement();
+        //Movement();
 
         if (Input.GetKey(KeyCode.Alpha1))
         {
@@ -115,38 +119,62 @@ public class Player : MonoBehaviour
                         case ("Plate"):
                             Debug.Log("Hit Plate" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<PlateAnimation>().ActivatePlate();
+                            _plateHasMoved = true;
                             return;
                         case ("Pillow"):
                             Debug.Log("Hit Pillow" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<PillowAnimation>().ActivatePillow();
+                            _pillowHasMoved = true;
                             return;
                         case ("Plant"):
                             Debug.Log("Hit Plant" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<PlantAnimation>().MovePlant();
+                            _plantHasMoved = true;
                             return;
                         case ("Page1"):
                             Debug.Log("Hit Page1" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<Page1>().PickUp();
                             return;
                         case ("Page2"):
-                            Debug.Log("Hit Page2" + Time.time);
-                            hitInfo.transform.gameObject.GetComponent<Page2>().PickUp();
-                            return;
+                            if (_pillowHasMoved == true)
+                            {
+                                Debug.Log("Hit Page2" + Time.time);
+                                hitInfo.transform.gameObject.GetComponent<Page2>().PickUp();
+                                return;
+                            }
+                            else return;
+                            
                         case ("Page3"):
-                            Debug.Log("Hit Page3" + Time.time);
-                            hitInfo.transform.gameObject.GetComponent<Page3>().PickUp();
-                            return;
+                            if (_plantHasMoved == true)
+                            {
+                                Debug.Log("Hit Page3" + Time.time);
+                                hitInfo.transform.gameObject.GetComponent<Page3>().PickUp();
+                                return;
+                            }
+                            else return;
+                            
                         case ("Page4"):
-                            Debug.Log("Hit Page4" + Time.time);
-                            hitInfo.transform.gameObject.GetComponent<Page4>().PickUp();
-                            return;
+                            if (_plateHasMoved == true)
+                            {
+                                Debug.Log("Hit Page4" + Time.time);
+                                hitInfo.transform.gameObject.GetComponent<Page4>().PickUp();
+                                return;
+                            }
+                            else return;
+                            
                         case ("Page5"):
-                            Debug.Log("Hit Page5" + Time.time);
-                            hitInfo.transform.gameObject.GetComponent<Page5>().PickUp();
-                            return;
+                            if (_sheetHasMoved == true)
+                            {
+                                Debug.Log("Hit Page5" + Time.time);
+                                hitInfo.transform.gameObject.GetComponent<Page5>().PickUp();
+                                return;
+                            }
+                            else return;
+                            
                         case ("Sheet"):
                             Debug.Log("Hit Sheet" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<MusicSheetAnimation>().ActivateSheet();
+                            _sheetHasMoved = true;
                             return;
                     }
                 }
