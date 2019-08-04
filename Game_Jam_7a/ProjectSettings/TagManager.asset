@@ -28,6 +28,9 @@ TagManager:
   - Uncle
   - Sheet
   - Grass
+  - Carpet
+  - Wood
+  - Floor
   layers:
   - Default
   - TransparentFX
