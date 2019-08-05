@@ -5,6 +5,8 @@ public class WardrobeLeftDoorAnimation : MonoBehaviour
     [SerializeField]
     private bool _isOpen = false;
     private Animator _anim;
+    public GameObject drawer;
+    
 
 
     void Start ()
@@ -15,6 +17,11 @@ public class WardrobeLeftDoorAnimation : MonoBehaviour
 
     public void ActivateWardrobe()
     {
+      if (drawer.GetComponent<DrawerAnimation>()._isOpen == true)
+        {
+            return;
+        } else
+
         if (_isOpen == false)
         {
             _anim.SetBool("open", true);

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WardrobeLeftDrawerAnimation : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isOpen = false;
+    
+    public bool _isOpen = false;
     private Animator _anim;
 
 

@@ -2,7 +2,7 @@
 
 public class DrawerAnimation : MonoBehaviour
 {
-    private bool _isOpen = false;
+    public bool _isOpen = false;
     private Animator _anim;
     [SerializeField]
     private AudioSource _audioSource;
@@ -15,7 +15,7 @@ public class DrawerAnimation : MonoBehaviour
 	void Start ()
     {
         _anim = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
+        
 	}
 
     public void ActivateDrawer()
