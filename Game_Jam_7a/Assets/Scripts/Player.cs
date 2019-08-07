@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Player : MonoBehaviour
 {
@@ -17,28 +18,34 @@ public class Player : MonoBehaviour
     private GameObject _wand;
     [SerializeField]
     private GameObject _uncle;
+    [SerializeField]
+    private GameObject _crossHair;
     private bool _plateHasMoved = false;
     private bool _sheetHasMoved = false;
     private bool _pillowHasMoved = false;
     private bool _plantHasMoved = false;
+    public bool _inDialogue = false;
+   
 
     public int pageCount = 0;
   
 
 	void Start ()
     {
-        //_controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
 	}
 	
 	void Update ()
     {
         //Movement();
+      
 
         if (Input.GetKey(KeyCode.Alpha1))
         {
-            _uncle.GetComponent<Uncle>().WakeUp();
+            
         }
 
         if (Input.GetKey(KeyCode.Alpha2))
@@ -60,6 +67,8 @@ public class Player : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+           
+            
             //SceneManager.LoadScene(0);
         }
 
@@ -80,7 +89,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (_isWandEquipped == false)
+            if (_isWandEquipped == false && _inDialogue == false)
             {
                 Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
                 RaycastHit hitInfo;
@@ -176,15 +185,37 @@ public class Player : MonoBehaviour
                             hitInfo.transform.gameObject.GetComponent<MusicSheetAnimation>().ActivateSheet();
                             _sheetHasMoved = true;
                             return;
+
+                        case ("Uncle"):
+                            Debug.Log("Hit Uncle" + Time.time);
+                            _uncle.GetComponent<Uncle>().WakeUp();
+                            _inDialogue = true;
+                            _controller.enabled = false;
+                            GetComponent<FirstPersonController>().enabled = false;
+                            Cursor.visible = true;
+                            Cursor.lockState = CursorLockMode.None;
+                            _crossHair.SetActive(false);
+                            _uncle.GetComponent<DialogueTrigger>().TriggerDialogue();
+                            return;
                     }
                 }
             }
-            else
+            else if (_isWandEquipped == true && _inDialogue == false)
             {
                 Debug.Log("Fire SHot" + Time.time);
                 _fireShot.Play();
             }
         }
+    }
+
+    public void ReturnToGame()
+    {
+        _inDialogue = false;
+        _controller.enabled = true;
+        GetComponent<FirstPersonController>().enabled = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        _crossHair.SetActive(true);
     }
 
     void Movement()

@@ -14,7 +14,10 @@ public class UIManager : MonoBehaviour {
     private GameObject _page4;
     [SerializeField]
     private GameObject _page5;
+  
 
+
+    
 
     public void CollectedPage1()
     {
