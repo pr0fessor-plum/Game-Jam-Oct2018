@@ -4,33 +4,32 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Door
-  - Drawer
-  - Wardrobe
-  - Plate
-  - Pillow
-  - Fire
-  - Plant
-  - Movable
+  - Shootable
+  - Floor
+  - Page5
+  - Wood
+  - Carpet
+  - Grass
   - WardrobeLeftDoor
   - WardrobeRightDoor
-  - WardrobeLeftDrawer
-  - WardrobeRightDrawer
+  - Drawer
+  - Movable
+  - Door
   - CabinetTopLeft
+  - Page4
+  - Uncle
   - CabinetTopRight
   - CabinetBottomLeft
   - CabinetBottomRight
-  - Page1
   - Page2
-  - Page3
-  - Page4
-  - Page5
-  - Uncle
   - Sheet
-  - Grass
-  - Carpet
-  - Wood
-  - Floor
+  - Page3
+  - Plate
+  - Fire
+  - Pillow
+  - Page1
+  - Plant
+  - Wand
   layers:
   - Default
   - TransparentFX
@@ -40,9 +39,9 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - Player
-  - 
+  - Lighting
+  - Ground
+  - Postprocessing
   - 
   - 
   - 
@@ -65,6 +64,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fire
+    uniqueID: 3804908061
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
