@@ -5,16 +5,18 @@ public class FairyMeteorAddForceDemo : MonoBehaviour {
 
     public int strength;
     public Vector3 direction;
+    [SerializeField]
+    private float _speed = 50;
 
-    protected Rigidbody rgbd;
+    protected Rigidbody rb;
 
     public void Awake()
     {
-        rgbd = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void Start()
     {
-        rgbd.AddForce(direction * strength);
+        rb.velocity = transform.forward * _speed;
     }
 }
