@@ -22,11 +22,16 @@ public class Player : MonoBehaviour
     private GameObject _uncle;
     [SerializeField]
     private GameObject _crossHair;
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _fireballShoot;
     private bool _plateHasMoved = false;
     private bool _sheetHasMoved = false;
     private bool _pillowHasMoved = false;
     private bool _plantHasMoved = false;
     public bool _inDialogue = false;
+    public float health = 100f;
    
 
     public int pageCount = 0;
@@ -35,6 +40,7 @@ public class Player : MonoBehaviour
 	void Start ()
     {
         _controller = GetComponent<CharacterController>();
+        _audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -42,18 +48,13 @@ public class Player : MonoBehaviour
 	
 	void Update ()
     {
-        //Movement();
-      
-
-       
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+      if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
            
             
-            //SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -173,12 +174,9 @@ public class Player : MonoBehaviour
                         case ("Uncle"):
                             Debug.Log("Hit Uncle" + Time.time);
                             _uncle.GetComponent<Uncle>().WakeUp();
-                            _inDialogue = true;
-                            _controller.enabled = false;
-                            GetComponent<FirstPersonController>().enabled = false;
-                            Cursor.visible = true;
-                            Cursor.lockState = CursorLockMode.None;
-                            _crossHair.SetActive(false);
+
+                            EnterDialog();
+
                             _uncle.GetComponent<DialogueTrigger>().TriggerDialogue();
                             return;
                     }
@@ -188,9 +186,20 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("Fire Missile" + Time.time);
                 Instantiate(_missile, _tip.transform.position, _tip.transform.rotation);
+                _audioSource.PlayOneShot(_fireballShoot, 1.0f);
                 
             }
         }
+    }
+
+    public void EnterDialog()
+    {
+        _inDialogue = true;
+        _controller.enabled = false;
+        GetComponent<FirstPersonController>().enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        _crossHair.SetActive(false);
     }
 
     public void ReturnToGame()

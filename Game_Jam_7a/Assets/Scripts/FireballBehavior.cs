@@ -31,7 +31,7 @@ public class FireballBehavior : MonoBehaviour
         }
         else
         {
-            Debug.Log("Collision at " + Time.time);
+            Debug.Log("Collision with " + other.name + " @ " + Time.time);
             Instantiate(_explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
