@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _continueButton;
+    private bool _firstWakeUncle = true;
+    [SerializeField]
+    private GameObject _wolf;
     private CharacterController _controller;
     [SerializeField]
     private float _speed = 6.5f;
@@ -25,13 +31,33 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
+    private AudioSource _audioSourceWand;
+    [SerializeField]
     private AudioClip _fireballShoot;
+    [SerializeField]
+    private AudioClip _wandDud;
+    [SerializeField]
+    private GameObject _uiManager;
+    [SerializeField]
+    private GameObject _page1;
+    [SerializeField]
+    private GameObject _page2;
+    [SerializeField]
+    private GameObject _page3;
+    [SerializeField]
+    private GameObject _page4;
+    [SerializeField]
+    private GameObject _page5;
+    [SerializeField]
+    private bool _isAlive = true;
     private bool _plateHasMoved = false;
     private bool _sheetHasMoved = false;
     private bool _pillowHasMoved = false;
     private bool _plantHasMoved = false;
     public bool _inDialogue = false;
-    public float health = 100f;
+    public float health = 1.0f;
+    [SerializeField]
+    private float mana = 1.0f;
    
 
     public int pageCount = 0;
@@ -41,6 +67,7 @@ public class Player : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _audioSource = GetComponent<AudioSource>();
+        _audioSourceWand = _wand.GetComponent<AudioSource>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -53,7 +80,6 @@ public class Player : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
            
-            
             SceneManager.LoadScene(0);
         }
 
@@ -173,22 +199,50 @@ public class Player : MonoBehaviour
 
                         case ("Uncle"):
                             Debug.Log("Hit Uncle" + Time.time);
-                            _uncle.GetComponent<Uncle>().WakeUp();
+                            if (_firstWakeUncle)
+                            {
+                                _uncle.GetComponent<Uncle>().WakeUp();
+                                _firstWakeUncle = false;
+                                ActivatePages();
+                            }
 
                             EnterDialog();
-
                             _uncle.GetComponent<DialogueTrigger>().TriggerDialogue();
                             return;
+
+                        /*case ("Wolf"):
+                            Debug.Log("Hit Wolf @ " + Time.time);
+                            EnterDialog();
+                            _wolf.GetComponent<DialogueTrigger>().TriggerDialogue();
+                            return;*/
                     }
                 }
             }
             else if (_isWandEquipped == true && _inDialogue == false)
             {
+                if (mana <= 0)
+                {
+                    _audioSourceWand.PlayOneShot(_wandDud);
+                    return;
+                }else
                 Debug.Log("Fire Missile" + Time.time);
                 Instantiate(_missile, _tip.transform.position, _tip.transform.rotation);
-                _audioSource.PlayOneShot(_fireballShoot, 1.0f);
-                
+                _audioSourceWand.PlayOneShot(_fireballShoot, 1.0f);
+                // call spendMana(cost of 1 shot) on UIManager script;
+                _uiManager.GetComponent<UIManager>().SpendMana(0.05f);
+                // decrease mana var on this script
+                mana = mana - 0.05f;
             }
+        }
+
+       if (health <= 0 && _isAlive)
+        {
+            _isAlive = false;
+            _uiManager.GetComponent<UIManager>().LoseHealth(1.0f);
+            EnterDialog();
+            GetComponent<DialogueTrigger>().TriggerDialogue();
+            _continueButton.SetActive(false);
+
         }
     }
 
@@ -210,6 +264,20 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         _crossHair.SetActive(true);
+    }
+
+    public void RegainMana(float amount)
+    {
+        mana = Mathf.Clamp01(mana + amount);
+    }
+
+    void ActivatePages()
+    {
+        _page1.SetActive(true);
+        _page2.SetActive(true);
+        _page3.SetActive(true);
+        _page4.SetActive(true);
+        _page5.SetActive(true);
     }
 
     void Movement()

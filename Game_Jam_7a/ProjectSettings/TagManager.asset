@@ -30,6 +30,7 @@ TagManager:
   - Page1
   - Plant
   - Wand
+  - Wolf
   layers:
   - Default
   - TransparentFX

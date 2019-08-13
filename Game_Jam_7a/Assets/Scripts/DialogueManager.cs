@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
+    
+ 
     public GameObject player;
 
     public Text nameText;
@@ -59,7 +61,9 @@ public class DialogueManager : MonoBehaviour {
             dialogueText.text += letter;
             yield return null;
         }
+       
     }
+
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);

@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class Uncle : MonoBehaviour {
 
-    
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _furnitureBump;
+    [SerializeField]
+    private AudioClip _barBump;
     private Animator _anim;
 
 
 	void Start ()
     {
         _anim = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
 	}
 
     public void WakeUp()
     {
         StopAllCoroutines();
         _anim.SetBool("WakeUp", true);
+        _audioSource.PlayOneShot(_furnitureBump);
+        _audioSource.PlayOneShot(_barBump);
         StartCoroutine(WakeUpOff());
+
     }
 
     IEnumerator WakeUpOff()
