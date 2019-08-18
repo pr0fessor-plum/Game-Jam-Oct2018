@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    private int _uncleDialogCount = 1;
+    [SerializeField]
+    private GameObject _toilet;
     [SerializeField]
     private GameObject _continueButton;
     private bool _firstWakeUncle = true;
@@ -18,6 +21,8 @@ public class Player : MonoBehaviour
     private float _gravity = 9.81f;
     [SerializeField]
     private bool _isWandEquipped = false;
+    [SerializeField]
+    private bool _hasWand;
     [SerializeField]
     private GameObject _missile;
     [SerializeField]
@@ -49,12 +54,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _page5;
     [SerializeField]
+    private GameObject _allPages;
+    [SerializeField]
     private bool _isAlive = true;
+    [SerializeField]
+    private AudioClip _manScream;
+    [SerializeField]
+    private GameObject _firstAid;
+    [SerializeField]
+    private GameObject _manaCrystal;
+    private bool _5pages;
     private bool _plateHasMoved = false;
     private bool _sheetHasMoved = false;
     private bool _pillowHasMoved = false;
     private bool _plantHasMoved = false;
+    private bool _spellBookFirstTime = true;
+
     public bool _inDialogue = false;
+
+
     public float health = 1.0f;
     [SerializeField]
     private float mana = 1.0f;
@@ -75,7 +93,7 @@ public class Player : MonoBehaviour
 	
 	void Update ()
     {
-      if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -85,7 +103,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (_isWandEquipped == false)
+            if (_isWandEquipped == false && _hasWand == true)
             {
                 _isWandEquipped = true;
                 _wand.SetActive(true);
@@ -154,12 +172,25 @@ public class Player : MonoBehaviour
                         case ("Page1"):
                             Debug.Log("Hit Page1" + Time.time);
                             hitInfo.transform.gameObject.GetComponent<Page1>().PickUp();
+                            if (pageCount == 5)
+                            {
+                                EnterDialog();
+                                _allPages.GetComponent<DialogueTrigger>().TriggerDialogue();
+                                _uncleDialogCount = 2;
+                            }
+
                             return;
                         case ("Page2"):
                             if (_pillowHasMoved == true)
                             {
                                 Debug.Log("Hit Page2" + Time.time);
                                 hitInfo.transform.gameObject.GetComponent<Page2>().PickUp();
+                                if (pageCount == 5)
+                                {
+                                    EnterDialog();
+                                    _allPages.GetComponent<DialogueTrigger>().TriggerDialogue();
+                                    _uncleDialogCount = 2;
+                                }
                                 return;
                             }
                             else return;
@@ -169,6 +200,12 @@ public class Player : MonoBehaviour
                             {
                                 Debug.Log("Hit Page3" + Time.time);
                                 hitInfo.transform.gameObject.GetComponent<Page3>().PickUp();
+                                if (pageCount == 5)
+                                {
+                                    EnterDialog();
+                                    _allPages.GetComponent<DialogueTrigger>().TriggerDialogue();
+                                    _uncleDialogCount = 2;
+                                }
                                 return;
                             }
                             else return;
@@ -178,6 +215,12 @@ public class Player : MonoBehaviour
                             {
                                 Debug.Log("Hit Page4" + Time.time);
                                 hitInfo.transform.gameObject.GetComponent<Page4>().PickUp();
+                                if (pageCount == 5)
+                                {
+                                    EnterDialog();
+                                    _allPages.GetComponent<DialogueTrigger>().TriggerDialogue();
+                                    _uncleDialogCount = 2;
+                                }
                                 return;
                             }
                             else return;
@@ -187,6 +230,12 @@ public class Player : MonoBehaviour
                             {
                                 Debug.Log("Hit Page5" + Time.time);
                                 hitInfo.transform.gameObject.GetComponent<Page5>().PickUp();
+                                if (pageCount == 5)
+                                {
+                                    EnterDialog();
+                                    _allPages.GetComponent<DialogueTrigger>().TriggerDialogue();
+                                    _uncleDialogCount = 2;
+                                }
                                 return;
                             }
                             else return;
@@ -206,15 +255,62 @@ public class Player : MonoBehaviour
                                 ActivatePages();
                             }
 
-                            EnterDialog();
-                            _uncle.GetComponent<DialogueTrigger>().TriggerDialogue();
+                            if (_uncleDialogCount == 1)
+                            {
+                                EnterDialog();
+                                _uncle.GetComponent<DialogueTrigger>().TriggerDialogue();
+                            }
                             return;
 
-                        /*case ("Wolf"):
-                            Debug.Log("Hit Wolf @ " + Time.time);
+                        case ("Toilet"):
+                            _toilet.GetComponent<Toilet>().Flush();
+                            return;
+
+                        case ("FirstAid"):
+                            Debug.Log("Hit First Aid Kit" + Time.time);
                             EnterDialog();
-                            _wolf.GetComponent<DialogueTrigger>().TriggerDialogue();
-                            return;*/
+                            _firstAid.GetComponent<DialogueTrigger>().TriggerDialogue();
+                            return;
+
+                        case ("Spellbook"):
+                            Debug.Log("Hit Spellbook @ " + Time.deltaTime);
+                            if (pageCount == 5 && _spellBookFirstTime)
+                            {
+                                _spellBookFirstTime = false;
+                                _uiManager.GetComponent<UIManager>().TurnOffPages();
+                                hitInfo.transform.GetComponent<Spellbook>().PlaySound();
+                                EnterDialog();
+                                hitInfo.transform.GetComponent<DialogueTrigger>().TriggerDialogue();
+                                if (_hasWand)
+                                {
+                                    mana = 0.0f;
+                                    _uiManager.GetComponent<UIManager>().ActivateManaMeter();
+                                    _manaCrystal.GetComponent<SphereCollider>().enabled = true;                                   
+                                }
+                                return;
+                            } else
+                            return;
+
+                        case ("ManaCrystal"):
+                            Debug.Log("Hit ManaCrystal @ " + Time.time);
+                            EnterDialog();
+                            _manaCrystal.GetComponent<DialogueTrigger>().TriggerDialogue();
+                            return;
+
+                        case ("Wand"):
+                            Debug.Log("Hit Wand @ " + Time.deltaTime);
+                            hitInfo.transform.GetComponent<Wand>().PlayPickupSound();
+                            _hasWand = true;
+                            EnterDialog();
+                            hitInfo.transform.GetComponent<DialogueTrigger>().TriggerDialogue();
+                            if (!_spellBookFirstTime)
+                            {
+                                mana = 0.0f;
+                                _uiManager.GetComponent<UIManager>().ActivateManaMeter();
+                                _manaCrystal.GetComponent<SphereCollider>().enabled = true;
+
+                            }
+                            return;
                     }
                 }
             }
@@ -241,8 +337,6 @@ public class Player : MonoBehaviour
             _uiManager.GetComponent<UIManager>().LoseHealth(1.0f);
             EnterDialog();
             GetComponent<DialogueTrigger>().TriggerDialogue();
-            _continueButton.SetActive(false);
-
         }
     }
 
@@ -251,24 +345,42 @@ public class Player : MonoBehaviour
         _inDialogue = true;
         _controller.enabled = false;
         GetComponent<FirstPersonController>().enabled = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
         _crossHair.SetActive(false);
     }
 
     public void ReturnToGame()
     {
-        _inDialogue = false;
-        _controller.enabled = true;
-        GetComponent<FirstPersonController>().enabled = true;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        _crossHair.SetActive(true);
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(0);
+        } else
+        {
+            _inDialogue = false;
+            _controller.enabled = true;
+            GetComponent<FirstPersonController>().enabled = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            _crossHair.SetActive(true);
+        }
+        
+    }
+
+    private void AllPages()
+    {
+        _uncleDialogCount = 2;
+        _5pages = true;
+        EnterDialog();
+        _allPages.GetComponent<DialogueTrigger>().TriggerDialogue();
     }
 
     public void RegainMana(float amount)
     {
         mana = Mathf.Clamp01(mana + amount);
+    }
+
+    public void RestoreHealth(float amount)
+    {
+        health = Mathf.Clamp01(health + amount);
     }
 
     void ActivatePages()

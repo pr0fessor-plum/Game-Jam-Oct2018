@@ -27,9 +27,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_HardFootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_HardJumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_HardLandSound;           // the sound played when character touches back on ground.
-        [SerializeField] private AudioClip[] m_GrassFootstepSounds;    
-        [SerializeField] private AudioClip m_GrassJumpSound;           
-        [SerializeField] private AudioClip m_GrassLandSound;
+        [SerializeField] private AudioClip[] m_DirtFootstepSounds;    
+        [SerializeField] private AudioClip m_DirtJumpSound;           
+        [SerializeField] private AudioClip m_DirtLandSound;
         [SerializeField] private AudioClip[] m_CarpetFootstepSounds;
         [SerializeField] private AudioClip m_CarpetJumpSound;
         [SerializeField] private AudioClip m_CarpetLandSound;
@@ -183,19 +183,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                switch (hitInfo.transform.tag)
                {
-                    case("Grass"):
-                        int a = Random.Range(1, m_GrassFootstepSounds.Length);
-                        m_AudioSource.clip = m_GrassFootstepSounds[a];
-                        m_AudioSource.PlayOneShot(m_AudioSource.clip);
+                    case("Dirt"):
+                        int a = Random.Range(1, m_DirtFootstepSounds.Length);
+                        m_AudioSource.clip = m_DirtFootstepSounds[a];
+                        m_AudioSource.PlayOneShot(m_AudioSource.clip, 0.25f);
                         // move picked sound to index 0 so it's not picked next time
-                        m_GrassFootstepSounds[a] = m_GrassFootstepSounds[0];
-                        m_GrassFootstepSounds[0] = m_AudioSource.clip;
+                        m_DirtFootstepSounds[a] = m_DirtFootstepSounds[0];
+                        m_DirtFootstepSounds[0] = m_AudioSource.clip;
                         return;
 
                     case ("Carpet"):
                         int b = Random.Range(1, m_CarpetFootstepSounds.Length);
                         m_AudioSource.clip = m_CarpetFootstepSounds[b];
-                        m_AudioSource.PlayOneShot(m_AudioSource.clip);
+                        m_AudioSource.PlayOneShot(m_AudioSource.clip, 0.75f);
                         // move picked sound to index 0 so it's not picked next time
                         m_CarpetFootstepSounds[b] = m_CarpetFootstepSounds[0];
                         m_CarpetFootstepSounds[0] = m_AudioSource.clip;
@@ -204,7 +204,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     case ("Floor"):
                         int c = Random.Range(1, m_HardFootstepSounds.Length);
                         m_AudioSource.clip = m_HardFootstepSounds[c];
-                        m_AudioSource.PlayOneShot(m_AudioSource.clip);
+                        m_AudioSource.PlayOneShot(m_AudioSource.clip, 0.75f);
                         // move picked sound to index 0 so it's not picked next time
                         m_HardFootstepSounds[c] = m_HardFootstepSounds[0];
                         m_HardFootstepSounds[0] = m_AudioSource.clip;
@@ -213,7 +213,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     case ("Wood"):
                         int d = Random.Range(1, m_WoodFootstepSounds.Length);
                         m_AudioSource.clip = m_WoodFootstepSounds[d];
-                        m_AudioSource.PlayOneShot(m_AudioSource.clip);
+                        m_AudioSource.PlayOneShot(m_AudioSource.clip, 0.75f);
                         // move picked sound to index 0 so it's not picked next time
                         m_WoodFootstepSounds[d] = m_WoodFootstepSounds[0];
                         m_WoodFootstepSounds[0] = m_AudioSource.clip;

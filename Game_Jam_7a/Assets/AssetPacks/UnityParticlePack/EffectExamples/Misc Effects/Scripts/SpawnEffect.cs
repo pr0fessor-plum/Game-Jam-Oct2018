@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SpawnEffect : MonoBehaviour {
 
-    public float spawnEffectTime = 2;
+    public float spawnEffectTime = 1;
     public float pause = 1;
     public AnimationCurve fadeIn;
-
+    [SerializeField]
     ParticleSystem ps;
     float timer = 0;
     Renderer _renderer;
@@ -18,16 +18,21 @@ public class SpawnEffect : MonoBehaviour {
     {
         shaderProperty = Shader.PropertyToID("_cutoff");
         _renderer = GetComponent<Renderer>();
-        ps = GetComponentInChildren <ParticleSystem>();
+        //ps = GetComponentInChildren <ParticleSystem>();
 
         var main = ps.main;
         main.duration = spawnEffectTime;
 
+
+    }
+
+    public void PlayParticleSys()
+    {
         ps.Play();
 
     }
-	
-	void Update ()
+
+    void Update ()
     {
         if (timer < spawnEffectTime + pause)
         {
@@ -35,7 +40,7 @@ public class SpawnEffect : MonoBehaviour {
         }
         else
         {
-            ps.Play();
+            PlayParticleSys();
             timer = 0;
         }
 

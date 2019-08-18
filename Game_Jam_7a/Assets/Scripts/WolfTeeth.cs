@@ -5,6 +5,8 @@ using UnityEngine;
 public class WolfTeeth : MonoBehaviour
 {
     [SerializeField]
+    private ParticleSystem _blood;
+    [SerializeField]
     private GameObject _wolf;
     [SerializeField]
     private AudioSource _audioSource;
@@ -21,7 +23,7 @@ public class WolfTeeth : MonoBehaviour
         {
             other.GetComponent<Player>().health = 0;
             _audioSource.PlayOneShot(_wolfSnarl, 1.0f);
-            //_wolf.GetComponent<Wolf>().speed = 0.1f;
+            _blood.Play();
         }
     }
 }

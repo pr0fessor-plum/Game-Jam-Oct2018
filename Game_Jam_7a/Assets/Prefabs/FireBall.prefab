@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 5128625169418472234}
   - component: {fileID: 5127473056981908950}
   - component: {fileID: 5387730778008408330}
-  - component: {fileID: 9109523521558901743}
+  - component: {fileID: 745449158920537418}
   - component: {fileID: 5105568119625685476}
   m_Layer: 0
   m_Name: FireBall
-  m_TagString: Untagged
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4718,7 +4718,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9109523521558901743
+--- !u!114 &745449158920537418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4735,6 +4735,7 @@ MonoBehaviour:
   _speed: 10
   _explosion: {fileID: 2187518009785767040, guid: 5acac131aaa3c074485328c46881f8cf,
     type: 3}
+  _wolf: {fileID: 177940, guid: 0bff5de0452ee2b4ab4d0603fe171d7b, type: 3}
 --- !u!135 &5105568119625685476
 SphereCollider:
   m_ObjectHideFlags: 0

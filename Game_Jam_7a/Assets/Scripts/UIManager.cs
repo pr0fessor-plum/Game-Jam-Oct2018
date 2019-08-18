@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour {
     private GameObject _page5;
 
     [SerializeField]
+    private GameObject _manaMeterObject;
+    [SerializeField]
     private Slider _healthMeter;
     [SerializeField]
     private Slider _manaMeter;
@@ -26,7 +28,13 @@ public class UIManager : MonoBehaviour {
     private void Start()
     {
         _healthMeter.value = 1f;
-        _manaMeter.value = 1f;
+        _manaMeter.value = 0f;
+    }
+
+    public void ActivateManaMeter()
+    {
+        _manaMeter.value = 0f;
+        _manaMeterObject.SetActive(true);
     }
 
     public void LoseHealth(float damage)
@@ -72,5 +80,14 @@ public class UIManager : MonoBehaviour {
     public void CollectedPage5()
     {
         _page5.SetActive(true);
+    }
+
+    public void TurnOffPages()
+    {
+        _page1.SetActive(false);
+        _page2.SetActive(false);
+        _page3.SetActive(false);
+        _page4.SetActive(false);
+        _page5.SetActive(false);
     }
 }

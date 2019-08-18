@@ -31,6 +31,15 @@ TagManager:
   - Plant
   - Wand
   - Wolf
+  - Toilet
+  - Fireball
+  - FirstAid
+  - Dirt
+  - lb_bird
+  - lb_groundTarget
+  - lb_perchTarget
+  - Spellbook
+  - ManaCrystal
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,8 @@ public class FireballBehavior : MonoBehaviour
     private float _speed = 10;
     [SerializeField]
     private GameObject _explosion;
+    [SerializeField]
+    private GameObject _wolf;
 
     protected Rigidbody rb;
 
@@ -21,11 +23,12 @@ public class FireballBehavior : MonoBehaviour
     public void Start()
     {
         StartCoroutine(ShootFireball());
+        _wolf = GameObject.Find("Wolf");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Wand")
+        if (other.tag == "Wand" || other.tag == "Player" || other.tag == "Fireball")
         {
             return;
         }
