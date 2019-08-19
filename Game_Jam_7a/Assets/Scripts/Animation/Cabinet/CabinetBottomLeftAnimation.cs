@@ -17,6 +17,7 @@ public class CabinetBottomLeftAnimation : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
+      
     }
 
 

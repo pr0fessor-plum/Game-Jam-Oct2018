@@ -16,6 +16,7 @@ public class DrawerAnimation : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         
+        
 	}
 
     public void ActivateDrawer()

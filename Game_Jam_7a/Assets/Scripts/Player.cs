@@ -63,8 +63,7 @@ public class Player : MonoBehaviour
     private GameObject _firstAid;
     [SerializeField]
     private GameObject _manaCrystal;
-    private bool _5pages;
-    private bool _plateHasMoved = false;
+     private bool _plateHasMoved = false;
     private bool _sheetHasMoved = false;
     private bool _pillowHasMoved = false;
     private bool _plantHasMoved = false;
@@ -363,14 +362,6 @@ public class Player : MonoBehaviour
             _crossHair.SetActive(true);
         }
         
-    }
-
-    private void AllPages()
-    {
-        _uncleDialogCount = 2;
-        _5pages = true;
-        EnterDialog();
-        _allPages.GetComponent<DialogueTrigger>().TriggerDialogue();
     }
 
     public void RegainMana(float amount)
