@@ -5,13 +5,13 @@ using UnityEngine;
 public class WolfTeeth : MonoBehaviour
 {
     [SerializeField]
-    private ParticleSystem _blood;
+    private ParticleSystem _blood = null;
     [SerializeField]
     private GameObject _wolf;
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _wolfSnarl;
+    private AudioClip _wolfSnarl = null;
 
     private void Start()
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthRestore : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _uiManager;
+    private GameObject _uiManager = null;
 
 
     private void OnTriggerStay(Collider other)

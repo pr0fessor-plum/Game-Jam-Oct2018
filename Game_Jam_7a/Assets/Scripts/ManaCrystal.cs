@@ -6,7 +6,7 @@ public class ManaCrystal : MonoBehaviour
 {
    
     [SerializeField]
-    private GameObject _uiManager;
+    private GameObject _uiManager = null;
 
     private void OnTriggerStay(Collider other)
     {

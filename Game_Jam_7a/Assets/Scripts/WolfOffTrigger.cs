@@ -5,7 +5,7 @@ using UnityEngine;
 public class WolfOffTrigger : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _wolf;
+    private GameObject _wolf = null;
 
     private void OnTriggerEnter(Collider other)
     {

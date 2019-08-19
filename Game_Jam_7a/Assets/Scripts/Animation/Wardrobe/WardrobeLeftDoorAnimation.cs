@@ -10,9 +10,9 @@ public class WardrobeLeftDoorAnimation : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _openDoor;
+    private AudioClip _openDoor = null;
     [SerializeField]
-    private AudioClip _closeDoor;
+    private AudioClip _closeDoor = null;
 
 
 

@@ -7,7 +7,7 @@ public class Spellbook : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _pageSound;
+    private AudioClip _pageSound = null;
 
 
     void Start()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Page2 : MonoBehaviour {
 
     [SerializeField]
-    private AudioClip _pagePickup;
+    private AudioClip _pagePickup = null;
 
 
     public void PickUp()

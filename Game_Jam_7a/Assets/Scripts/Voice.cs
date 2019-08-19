@@ -7,10 +7,9 @@ public class Voice : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _scream;
+    private AudioClip _scream = null;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();

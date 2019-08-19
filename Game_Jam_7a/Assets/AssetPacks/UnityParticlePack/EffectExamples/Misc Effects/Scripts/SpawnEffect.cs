@@ -8,7 +8,7 @@ public class SpawnEffect : MonoBehaviour {
     public float pause = 1;
     public AnimationCurve fadeIn;
     [SerializeField]
-    ParticleSystem ps;
+    ParticleSystem ps = null;
     float timer = 0;
     Renderer _renderer;
 

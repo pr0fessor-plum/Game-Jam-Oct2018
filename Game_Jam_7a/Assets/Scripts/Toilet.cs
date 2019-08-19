@@ -4,7 +4,7 @@ public class Toilet : MonoBehaviour
 {
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _flush;
+    private AudioClip _flush = null;
 
     // Start is called before the first frame update
     void Start()

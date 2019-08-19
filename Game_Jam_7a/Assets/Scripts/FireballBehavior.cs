@@ -9,7 +9,7 @@ public class FireballBehavior : MonoBehaviour
     [SerializeField]
     private float _speed = 10;
     [SerializeField]
-    private GameObject _explosion;
+    private GameObject _explosion = null;
     [SerializeField]
     private GameObject _wolf;
 

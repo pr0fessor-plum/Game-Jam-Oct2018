@@ -4,18 +4,18 @@ using UnityEngine;
 public class DoorAnimation : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _player;
+    private GameObject _player = null;
     [SerializeField]
-    private bool _isLocked;
+    private bool _isLocked = false;
     [SerializeField]
     private bool _isOpen = false;
     private Animator _anim;
     [SerializeField]
-    private AudioClip _open;
+    private AudioClip _open = null;
     [SerializeField]
-    private AudioClip _close;
+    private AudioClip _close = null;
     [SerializeField]
-    private AudioClip _locked;
+    private AudioClip _locked = null;
     [SerializeField]
     private AudioSource _audioSource;
 

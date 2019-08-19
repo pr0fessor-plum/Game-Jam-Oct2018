@@ -10,13 +10,14 @@ public class CabinetBottomRightAnimation : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _open;
+    private AudioClip _open = null;
     [SerializeField]
-    private AudioClip _close;
+    private AudioClip _close = null;
 
     void Start()
     {
         _anim = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
 

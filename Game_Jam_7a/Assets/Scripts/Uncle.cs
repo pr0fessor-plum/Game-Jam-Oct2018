@@ -7,9 +7,9 @@ public class Uncle : MonoBehaviour {
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _furnitureBump;
+    private AudioClip _furnitureBump = null;
     [SerializeField]
-    private AudioClip _barBump;
+    private AudioClip _barBump = null;
     private Animator _anim;
 
 

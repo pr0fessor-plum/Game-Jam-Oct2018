@@ -6,7 +6,7 @@ public class Page3 : MonoBehaviour
 {
 
     [SerializeField]
-    private AudioClip _pagePickup;
+    private AudioClip _pagePickup = null;
 
 
 

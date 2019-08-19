@@ -7,7 +7,7 @@ public class Crow : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _squawk;
+    private AudioClip _squawk = null;
 
 
 

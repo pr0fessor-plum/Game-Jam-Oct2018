@@ -6,22 +6,22 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
 
     [SerializeField]
-    private GameObject _page1;
+    private GameObject _page1 = null;
     [SerializeField]
-    private GameObject _page2;
+    private GameObject _page2 = null;
     [SerializeField]
-    private GameObject _page3;
+    private GameObject _page3 = null;
     [SerializeField]
-    private GameObject _page4;
+    private GameObject _page4 = null;
     [SerializeField]
-    private GameObject _page5;
+    private GameObject _page5 = null;
 
     [SerializeField]
-    private GameObject _manaMeterObject;
+    private GameObject _manaMeterObject = null;
     [SerializeField]
-    private Slider _healthMeter;
+    private Slider _healthMeter = null;
     [SerializeField]
-    private Slider _manaMeter;
+    private Slider _manaMeter = null;
 
 
 

@@ -7,7 +7,7 @@ public class Explosion : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip[] _fireballExplosions;
+    private AudioClip[] _fireballExplosions = null;
 
     void Start()
     {

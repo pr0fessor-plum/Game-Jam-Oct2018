@@ -12,13 +12,9 @@ public class Wolf : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
-    private AudioClip _wolfHowl;
+    private AudioClip _wolfHowl = null;
     [SerializeField]
-    private AudioClip _growl;
-    [SerializeField]
-    private AudioClip _playerScream;
-    [SerializeField]
-    private GameObject _audioSourceObject;
+    private GameObject _audioSourceObject = null;
     private bool _firstTime = true;
 
 

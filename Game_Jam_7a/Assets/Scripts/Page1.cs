@@ -5,11 +5,11 @@ using UnityEngine;
 public class Page1 : MonoBehaviour {
 
     [SerializeField]
-    private AudioClip _pagePickup;
+    private AudioClip _pagePickup = null;
     [SerializeField]
-    private GameObject _player;
+    private GameObject _player = null;
     [SerializeField]
-    private GameObject _uiManager;
+    private GameObject _uiManager = null;
 
  
 

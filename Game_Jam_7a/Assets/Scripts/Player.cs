@@ -7,74 +7,45 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+   
+    [SerializeField]    private GameObject _toilet = null;
+    [SerializeField]    private GameObject _continueButton;
+    [SerializeField]    private GameObject _wolf;
+    [SerializeField]    private float _speed = 6.5f;
+    [SerializeField]    private bool _isWandEquipped = false;
+    [SerializeField]    private bool _hasWand;
+    [SerializeField]    private GameObject _missile = null;
+    [SerializeField]    private GameObject _wand = null;
+    [SerializeField]    private GameObject _tip = null;
+    [SerializeField]    private GameObject _uncle = null;
+    [SerializeField]    private GameObject _crossHair = null;
+    [SerializeField]    private AudioSource _audioSource;
+    [SerializeField]    private AudioSource _audioSourceWand;
+    [SerializeField]    private AudioClip _fireballShoot = null;
+    [SerializeField]    private AudioClip _wandDud = null;
+    [SerializeField]    private GameObject _uiManager = null;
+    [SerializeField]    private GameObject _page1 = null;
+    [SerializeField]    private GameObject _page2 = null;
+    [SerializeField]    private GameObject _page3 = null;
+    [SerializeField]    private GameObject _page4 = null;
+    [SerializeField]    private GameObject _page5 = null;
+    [SerializeField]    private GameObject _allPages = null;
+    [SerializeField]    private bool _isAlive = true;
+    [SerializeField]    private GameObject _firstAid = null;
+    [SerializeField]    private GameObject _manaCrystal = null;
     private int _uncleDialogCount = 1;
-    [SerializeField]
-    private GameObject _toilet;
-    [SerializeField]
-    private GameObject _continueButton;
-    private bool _firstWakeUncle = true;
-    [SerializeField]
-    private GameObject _wolf;
-    private CharacterController _controller;
-    [SerializeField]
-    private float _speed = 6.5f;
-    private float _gravity = 9.81f;
-    [SerializeField]
-    private bool _isWandEquipped = false;
-    [SerializeField]
-    private bool _hasWand;
-    [SerializeField]
-    private GameObject _missile;
-    [SerializeField]
-    private GameObject _wand;
-    [SerializeField]
-    private GameObject _tip;
-    [SerializeField]
-    private GameObject _uncle;
-    [SerializeField]
-    private GameObject _crossHair;
-    [SerializeField]
-    private AudioSource _audioSource;
-    [SerializeField]
-    private AudioSource _audioSourceWand;
-    [SerializeField]
-    private AudioClip _fireballShoot;
-    [SerializeField]
-    private AudioClip _wandDud;
-    [SerializeField]
-    private GameObject _uiManager;
-    [SerializeField]
-    private GameObject _page1;
-    [SerializeField]
-    private GameObject _page2;
-    [SerializeField]
-    private GameObject _page3;
-    [SerializeField]
-    private GameObject _page4;
-    [SerializeField]
-    private GameObject _page5;
-    [SerializeField]
-    private GameObject _allPages;
-    [SerializeField]
-    private bool _isAlive = true;
-    [SerializeField]
-    private AudioClip _manScream;
-    [SerializeField]
-    private GameObject _firstAid;
-    [SerializeField]
-    private GameObject _manaCrystal;
-     private bool _plateHasMoved = false;
+    private bool _plateHasMoved = false;
     private bool _sheetHasMoved = false;
     private bool _pillowHasMoved = false;
     private bool _plantHasMoved = false;
     private bool _spellBookFirstTime = true;
+    private bool _firstWakeUncle = true;
+    private CharacterController _controller;
+    private float _gravity = 9.81f;
 
     public bool _inDialogue = false;
-
-
     public float health = 1.0f;
-    [SerializeField]
-    private float mana = 1.0f;
+    [SerializeField]    private float mana = 1.0f;
    
 
     public int pageCount = 0;

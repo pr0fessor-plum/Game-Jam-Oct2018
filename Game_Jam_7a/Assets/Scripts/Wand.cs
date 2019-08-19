@@ -6,7 +6,7 @@ public class Wand : MonoBehaviour
 {
     
     [SerializeField]
-    private AudioClip _pickupSound;
+    private AudioClip _pickupSound = null;
 
    
 
