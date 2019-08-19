@@ -1,2 +1,2 @@
-# Game-Jam-Oct2018
+# Haunted Mansion
 Unfinished FPS in a castle.
