@@ -12,8 +12,8 @@ public class HealthRestore : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            _uiManager.GetComponent<UIManager>().RegainHealth(1.0f);
-            other.GetComponent<Player>().RestoreHealth(1.0f);
+            _uiManager.GetComponent<UIManager>().RegainHealth(0.1f * Time.deltaTime);
+            other.GetComponent<Player>().RestoreHealth(0.1f * Time.deltaTime);
         }
     }
 }

@@ -40,6 +40,9 @@ TagManager:
   - lb_perchTarget
   - Spellbook
   - ManaCrystal
+  - Crow
+  - Trigger
+  - Lamp
   layers:
   - Default
   - TransparentFX

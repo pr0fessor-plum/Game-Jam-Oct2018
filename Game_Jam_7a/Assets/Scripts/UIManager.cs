@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour {
 
     private void Start()
     {
-        _healthMeter.value = 1f;
+        _healthMeter.value = 1.0f;
         _manaMeter.value = 0f;
     }
 

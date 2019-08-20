@@ -28,14 +28,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_HardJumpSound = null;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_HardLandSound = null;           // the sound played when character touches back on ground.
         [SerializeField] private AudioClip[] m_DirtFootstepSounds = null;
-        //[SerializeField] private AudioClip m_DirtJumpSound = null;           
-        //[SerializeField] private AudioClip m_DirtLandSound = null;
+        [SerializeField] private AudioClip m_DirtJumpSound = null;           
+        [SerializeField] private AudioClip m_DirtLandSound = null;
         [SerializeField] private AudioClip[] m_CarpetFootstepSounds = null;
         //[SerializeField] private AudioClip m_CarpetJumpSound = null;
         //[SerializeField] private AudioClip m_CarpetLandSound = null;
         [SerializeField] private AudioClip[] m_WoodFootstepSounds = null;
-        //[SerializeField] private AudioClip m_WoodJumpSound = null;
-        //[SerializeField] private AudioClip m_WoodLandSound = null;
+        [SerializeField] private AudioClip m_WoodJumpSound = null;
+        [SerializeField] private AudioClip m_WoodLandSound = null;
 
 
 

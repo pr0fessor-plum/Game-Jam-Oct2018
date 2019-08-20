@@ -28,7 +28,7 @@ public class FireballBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Wand" || other.tag == "Player" || other.tag == "Fireball")
+        if (other.tag == "Wand" || other.tag == "Player" || other.tag == "Fireball" || other.tag == "Trigger")
         {
             return;
         }

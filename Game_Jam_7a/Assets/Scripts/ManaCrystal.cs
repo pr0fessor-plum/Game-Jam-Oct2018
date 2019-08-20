@@ -12,8 +12,8 @@ public class ManaCrystal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            _uiManager.GetComponent<UIManager>().RegainMana(1.0f);
-            other.GetComponent<Player>().RegainMana(1.0f); 
+            _uiManager.GetComponent<UIManager>().RegainMana(0.1f * Time.deltaTime);
+            other.GetComponent<Player>().RegainMana(0.1f * Time.deltaTime); 
         }
     }
 

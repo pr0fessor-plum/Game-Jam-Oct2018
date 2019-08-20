@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField]    private bool _isAlive = true;
     [SerializeField]    private GameObject _firstAid = null;
     [SerializeField]    private GameObject _manaCrystal = null;
+    [SerializeField] private SpawnManager _spawnManager;
     private int _uncleDialogCount = 1;
     private bool _plateHasMoved = false;
     private bool _sheetHasMoved = false;
@@ -268,7 +269,7 @@ public class Player : MonoBehaviour
                             return;
 
                         case ("Wand"):
-                            Debug.Log("Hit Wand @ " + Time.deltaTime);
+                            Debug.Log("Hit Wand @ " + Time.time);
                             hitInfo.transform.GetComponent<Wand>().PlayPickupSound();
                             _hasWand = true;
                             EnterDialog();
@@ -280,6 +281,11 @@ public class Player : MonoBehaviour
                                 _manaCrystal.GetComponent<SphereCollider>().enabled = true;
 
                             }
+                            return;
+
+                        case ("Lamp"):
+                            Debug.Log("Hit Lamp @ " + Time.time);
+                            _spawnManager.SpawnEnemy(new Vector3 (0f, 6f, 28f));
                             return;
                     }
                 }
