@@ -1,84 +1,59 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
+
 
 public class Wolf : MonoBehaviour
 {
 
-
-    static Animator anim;
+    private NavMeshAgent _agent;
+    [SerializeField] private GameObject _player;
+    private Animator _anim;
     [SerializeField]
     private GameObject _uiManager;
     [SerializeField]
-    private AudioSource _audioSource;
-    [SerializeField]
-    private AudioClip _wolfHowl = null;
-    [SerializeField]
-    private GameObject _audioSourceObject = null;
-    private bool _firstTime = true;
+    private GameObject _voice;
+    private bool _isPlaying;
+   
+   
+  
+
 
 
 
     public float speed;
-    public Transform _player;
+  
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
+        _player = GameObject.Find("Player");
+        _agent = GetComponent<NavMeshAgent>();
+        _anim = GetComponent<Animator>();
+  
+        
     }
 
 
     void Update()
     {
-        if (Vector3.Distance(_player.position, transform.position) < 25)
+        if (Vector3.Distance(_player.transform.position, transform.position) < 30)
         {
+            _anim.SetBool("idle", false);
+            _agent.SetDestination(_player.transform.position);
+            _anim.SetBool("run", true);
 
-            Vector3 direction = _player.position - transform.position;
-            direction.y = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.5f);
-
-            anim.SetBool("idle", false);
-            if (direction.magnitude > 20)
-            {
-                speed = 0.2f;
-                transform.Translate(0, 0, speed);
-                anim.SetBool("run", false);
-                anim.SetBool("walk", true);
-
-            }
-            else
-            {
-
-                speed = 0.6f;
-                transform.Translate(0, 0, speed);
-                if (_firstTime)
-                {
-                _firstTime = false;
-                _audioSourceObject.GetComponent<Voice>().Scream();
-                }
-                
-                anim.SetBool("walk", false);
-                anim.SetBool("run", true);
-
-
-            } 
         }
-        else
+
+        if (Vector3.Distance(_player.transform.position, transform.position) < 15 && !_isPlaying)
         {
-            anim.SetBool("idle", true);
-            anim.SetBool("walk", false);
-            anim.SetBool("run", false);
+            _isPlaying = true;
+            _voice.GetComponent<Voice>().Scream();
+
         }
+
+
 
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            _audioSource.PlayOneShot(_wolfHowl, 1.0f);
-        }
-    }
+   
 
 }

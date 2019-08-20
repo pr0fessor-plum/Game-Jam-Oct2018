@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Voice : MonoBehaviour
 {
-    [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
     private AudioClip _scream = null;
+
 
 
     void Start()
