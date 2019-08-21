@@ -5,20 +5,13 @@ using UnityEngine.AI;
 public class Wolf : MonoBehaviour
 {
 
-    private NavMeshAgent _agent;
     [SerializeField] private GameObject _player;
-    private Animator _anim;
-    [SerializeField]
-    private GameObject _uiManager;
-    [SerializeField]
-    private GameObject _voice;
+    [SerializeField] private GameObject _uiManager;
+    [SerializeField] private GameObject _voice;
+
     private bool _isPlaying;
-   
-   
-  
-
-
-
+    private Animator _anim;
+    private NavMeshAgent _agent;
 
     public float speed;
   
@@ -34,6 +27,8 @@ public class Wolf : MonoBehaviour
 
     void Update()
     {
+
+
         if (Vector3.Distance(_player.transform.position, transform.position) < 30)
         {
             _anim.SetBool("idle", false);

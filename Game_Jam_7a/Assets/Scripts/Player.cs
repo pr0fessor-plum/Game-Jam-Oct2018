@@ -310,12 +310,13 @@ public class Player : MonoBehaviour
        if (health <= 0 && _isAlive)
         {
             _isAlive = false;
-            _uiManager.GetComponent<UIManager>().LoseHealth(1.0f);
+            //_uiManager.GetComponent<UIManager>().LoseHealth(1.0f);
             EnterDialog();
             GetComponent<DialogueTrigger>().TriggerDialogue();
         }
     }
 
+   
     public void EnterDialog()
     {
         _inDialogue = true;
@@ -349,6 +350,11 @@ public class Player : MonoBehaviour
     public void RestoreHealth(float amount)
     {
         health = Mathf.Clamp01(health + amount);
+    }
+
+    public void DamageHealth(float amount)
+    {
+        health = Mathf.Clamp01(health - amount);
     }
 
     void ActivatePages()

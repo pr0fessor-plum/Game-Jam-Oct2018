@@ -43,6 +43,7 @@ TagManager:
   - Crow
   - Trigger
   - Lamp
+  - Enemy
   layers:
   - Default
   - TransparentFX
