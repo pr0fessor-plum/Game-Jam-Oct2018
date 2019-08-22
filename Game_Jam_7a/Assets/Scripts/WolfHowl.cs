@@ -5,7 +5,7 @@ using UnityEngine;
 public class WolfHowl : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip _wolfHowl = null;
+    private AudioClip _wolfHowl;
     [SerializeField]
     private AudioSource _audioSource;
 

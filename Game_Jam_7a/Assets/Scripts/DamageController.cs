@@ -5,33 +5,42 @@ using UnityEngine;
 
 public class DamageController : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
+    [SerializeField] private GameObject _player;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip[] _audioClips;
+    [SerializeField] private AudioClip _hit;
+    [SerializeField] private ParticleSystem _blood;
+    [SerializeField] private Voice _voice;
 
 
     private void Start()
     {
-   
+        _player = GameObject.Find("Player");
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
+        _voice = GameObject.Find("Player").GetComponentInChildren<Voice>();
     }
 
 
     public void EndAttack()
     {
-        float distance = Vector3.Distance(_player.position, transform.position);
+        float distance = Vector3.Distance(_player.transform.position, transform.position);
         if (distance < 2.5f)
         {
-            _player.GetComponent<Player>().DamageHealth(0.2f);
-            _uiManager.LoseHealth(0.2f);
+            _audioSource.PlayOneShot(_hit, 1.0f);
+            _blood.Play();
 
-            int a = Random.Range(1, _audioClips.Length);
-            _audioSource.clip = _audioClips[a];
-            _audioSource.PlayOneShot(_audioSource.clip, 1.0f);
-            // move picked sound to index 0 so it's not picked next time
-            _audioClips[a] = _audioClips[0];
-            _audioClips[0] = _audioSource.clip;
+
+            if (_player.GetComponent<Player>()._isAlive == true)
+            {
+                _player.GetComponent<Player>().DamageHealth(0.2f);
+                _uiManager.LoseHealth(0.2f);
+                _voice.Groan();
+                
+
+            }
+
+    
 
         }
     }

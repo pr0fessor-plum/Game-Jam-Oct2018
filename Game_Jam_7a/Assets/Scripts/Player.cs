@@ -21,8 +21,12 @@ public class Player : MonoBehaviour
     [SerializeField]    private GameObject _crossHair = null;
     [SerializeField]    private AudioSource _audioSource;
     [SerializeField]    private AudioSource _audioSourceWand;
+    [SerializeField] private AudioSource _audioSourceVoice;
+    [SerializeField] private AudioSource _audioSourceLamp;
+    [SerializeField] private AudioClip _evilLaugh;
     [SerializeField]    private AudioClip _fireballShoot = null;
     [SerializeField]    private AudioClip _wandDud = null;
+    [SerializeField] private AudioClip _die = null;
     [SerializeField]    private GameObject _uiManager = null;
     [SerializeField]    private GameObject _page1 = null;
     [SerializeField]    private GameObject _page2 = null;
@@ -30,7 +34,6 @@ public class Player : MonoBehaviour
     [SerializeField]    private GameObject _page4 = null;
     [SerializeField]    private GameObject _page5 = null;
     [SerializeField]    private GameObject _allPages = null;
-    [SerializeField]    private bool _isAlive = true;
     [SerializeField]    private GameObject _firstAid = null;
     [SerializeField]    private GameObject _manaCrystal = null;
     [SerializeField] private SpawnManager _spawnManager;
@@ -44,6 +47,7 @@ public class Player : MonoBehaviour
     private CharacterController _controller;
     private float _gravity = 9.81f;
 
+    public bool _isAlive = true;
     public bool _inDialogue = false;
     public float health = 1.0f;
     [SerializeField]    private float mana = 1.0f;
@@ -285,7 +289,8 @@ public class Player : MonoBehaviour
 
                         case ("Lamp"):
                             Debug.Log("Hit Lamp @ " + Time.time);
-                            _spawnManager.SpawnEnemy(new Vector3 (0f, 6f, 28f));
+                            _spawnManager.SpawnEnemy(new Vector3 (-1.0f, 1.0f, 20f));
+                            _audioSourceLamp.PlayOneShot(_evilLaugh, 1.0f);
                             return;
                     }
                 }
@@ -311,6 +316,7 @@ public class Player : MonoBehaviour
         {
             _isAlive = false;
             //_uiManager.GetComponent<UIManager>().LoseHealth(1.0f);
+            _audioSourceVoice.PlayOneShot(_die, 0.5f);
             EnterDialog();
             GetComponent<DialogueTrigger>().TriggerDialogue();
         }
