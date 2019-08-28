@@ -12,6 +12,7 @@ public class FireballBehavior : MonoBehaviour
     private GameObject _explosion = null;
     [SerializeField]
     private GameObject _wolf;
+    [SerializeField] private Animator _anim;
 
     protected Rigidbody rb;
 
@@ -32,6 +33,14 @@ public class FireballBehavior : MonoBehaviour
         {
             return;
         }
+
+        else if (other.tag == "Enemy")
+        {
+            Instantiate(_explosion, transform.position, transform.rotation);
+            other.GetComponent<Enemy>().DamageHealth();
+            Destroy(gameObject);
+        }
+
         else
         {
             Debug.Log("Collision with " + other.name + " @ " + Time.time);

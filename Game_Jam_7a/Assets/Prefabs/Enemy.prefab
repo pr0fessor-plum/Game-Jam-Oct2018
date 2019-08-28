@@ -4988,6 +4988,7 @@ GameObject:
   - component: {fileID: 648873589740636881}
   - component: {fileID: 648873589740636880}
   - component: {fileID: 648873589740636911}
+  - component: {fileID: 3975757199959641710}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -5063,12 +5064,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648873589740636910}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.2396193
+  m_Radius: 1.3433518
   m_Height: 7.180676
   m_Direction: 1
-  m_Center: {x: 0.04, y: 3.0903378, z: 0.09}
+  m_Center: {x: 0.039999932, y: 3.0903378, z: 0.19373268}
 --- !u!82 &648873589740636880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5181,16 +5182,22 @@ MonoBehaviour:
   _player: {fileID: 0}
   _uiManager: {fileID: 0}
   _audioSource: {fileID: 0}
-  _audioSourceVoice: {fileID: 7223967375823336961, guid: d73fe13d089fae54e85afa39792f6817,
-    type: 3}
   _hit: {fileID: 8300000, guid: 4de05abc53a5683479cfa0b80582b9f8, type: 3}
-  _groans:
-  - {fileID: 8300000, guid: 9e4c5f2327fc67c49ac5c94471e3107a, type: 3}
-  - {fileID: 8300000, guid: b3266b78b59e8f348a9e503484cf6e02, type: 3}
-  - {fileID: 8300000, guid: e5afb3612f411224887c2576b4f8a2db, type: 3}
-  - {fileID: 8300000, guid: 2d07eba8eab06cb45898cb11da4a54e2, type: 3}
-  - {fileID: 8300000, guid: 1734cebdf2bc02842a4652686c07cf90, type: 3}
   _blood: {fileID: 648873591487786171}
+  _voice: {fileID: 0}
+--- !u!114 &3975757199959641710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648873589740636910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5a1387fa817e242aa16f6f4f44964b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 1
 --- !u!1 &648873589758918922
 GameObject:
   m_ObjectHideFlags: 0
